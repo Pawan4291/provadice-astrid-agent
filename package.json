@@ -6,8 +6,7 @@
   "type": "module",
   "scripts": {
   "build": "tsc",
-  "start": "node dist/index.js",
-  "astrid:install": "npm install -g @unicity-astrid/cli && astrid init && astrid capsule install ./capsule.mcp.json"
+  "start": "node dist/index.js"
 },
   "keywords": [],
   "author": "",
