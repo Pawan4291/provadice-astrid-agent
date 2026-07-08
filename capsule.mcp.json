@@ -1,0 +1,8 @@
+{
+  "name": "provadice-house-agent",
+  "version": "1.0.0",
+  "description": "Autonomous house agent for ProvaDice — settles rounds, pays winners, manages treasury",
+  "engine": "mcp",
+  "entrypoint": "node dist/index.js",
+  "permissions": ["network", "wallet"]
+}
