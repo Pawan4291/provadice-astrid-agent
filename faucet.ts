@@ -3,9 +3,9 @@
  * Polls balance before each round and calls real faucet if below threshold
  */
 
-import { FAUCET_URL, TREASURY_LOW_THRESHOLD_UCT, UCT_BASE_UNIT, HOUSE_NAMETAG } from './constants';
-import { appendAuditEntry } from './auditLog';
-import { getHouseBalance } from './houseWallet';
+import { FAUCET_URL, TREASURY_LOW_THRESHOLD_UCT, UCT_BASE_UNIT, HOUSE_NAMETAG } from './constants.js';
+import { appendAuditEntry } from './auditLog.js';
+import { getHouseBalance } from './houseWallet.js';
 
 let faucetCooldownUntil = 0;
 const FAUCET_COOLDOWN_MS = 5 * 60 * 1000; // 5 minutes between faucet calls

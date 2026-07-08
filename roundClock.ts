@@ -4,20 +4,20 @@
  * Also handles incoming transfer processing
  */
 
-import { db } from './db';
-import { rounds } from './schema';
+import { db } from './db.js';
+import { rounds } from './schema.js';
 import { eq, sql } from 'drizzle-orm';
 import {
   openNewRound,
   getCurrentRoundState,
   settleRound,
   getRecentRounds,
-} from './roundManager';
-import { checkAndRefillTreasury } from './faucet';
-import { sendUCT, initHouseWallet, subscribeToIncoming } from './houseWallet';
-import { recordBet } from './roundManager';
-import { appendAuditEntry } from './auditLog';
-import { UCT_COIN_ID } from './constants';
+} from './roundManager.js';
+import { checkAndRefillTreasury } from './faucet.js';
+import { sendUCT, initHouseWallet, subscribeToIncoming } from './houseWallet.js';
+import { recordBet } from './roundManager.js';
+import { appendAuditEntry } from './auditLog.js';
+import { UCT_COIN_ID } from './constants.js';
 
 let clockInitialized = false;
 let currentRoundId: string | null = null;

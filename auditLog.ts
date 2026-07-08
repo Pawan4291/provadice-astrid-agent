@@ -1,7 +1,7 @@
-import { db } from './db';
-import { auditLog } from './schema';
+import { db } from './db.js';
+import { auditLog } from './schema.js';
 import { desc } from 'drizzle-orm';
-import { computeAuditHash } from './crypto';
+import { computeAuditHash } from './crypto.js';
 
 export type AuditEventType =
   | 'ROUND_OPEN'

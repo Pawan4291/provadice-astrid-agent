@@ -8,8 +8,8 @@
  * 4. CANCELLED: < MIN_PLAYERS, all refunded
  */
 
-import { db } from './db';
-import { rounds, bets, leaderboardCache } from './schema';
+import { db } from './db.js';
+import { rounds, bets, leaderboardCache } from './schema.js';
 import { eq, sql, desc } from 'drizzle-orm';
 import {
   generateRoundId,
@@ -17,14 +17,14 @@ import {
   MAX_BET_PCT_OF_POT,
   HOUSE_FEE_PCT,
   ROUND_DURATION_MS,
-} from './constants';
+} from './constants.js';
 import {
   generateSeed,
   computeCommitHash,
   computeRevealHash,
   selectWinner,
-} from './crypto';
-import { appendAuditEntry } from './auditLog';
+} from './crypto.js';
+import { appendAuditEntry } from './auditLog.js';
 
 export interface RoundState {
   roundId: string;

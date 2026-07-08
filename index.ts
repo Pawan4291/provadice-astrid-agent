@@ -7,7 +7,7 @@ process.on('uncaughtException', (err) => {
 
 console.log('Starting provadice-astrid-agent...');
 
-import { tickClock, initRoundClock } from './roundClock';
+import { tickClock, initRoundClock } from './roundClock.js';
 import http from 'http';
 
 const port = process.env.PORT || 3000;

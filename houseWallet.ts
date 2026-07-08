@@ -8,8 +8,8 @@
  * Subsequent boots: reads mnemonic from HOUSE_MNEMONIC env var.
  */
 
-import { appendAuditEntry } from './auditLog';
-import { UCT_COIN_ID } from './constants';
+import { appendAuditEntry } from './auditLog.js';
+import { UCT_COIN_ID } from './constants.js';
 
 export interface IncomingTransfer {
   txId: string;
