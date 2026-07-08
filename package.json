@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "start": "ts-node index.ts"
-  },
+  "type": "module",
+"scripts": {
+  "start": "ts-node --esm index.ts"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
