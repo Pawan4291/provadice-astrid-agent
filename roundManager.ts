@@ -8,7 +8,7 @@
  * 4. CANCELLED: < MIN_PLAYERS, all refunded
  */
 
-import { db } from './index';
+import { db } from './db';
 import { rounds, bets, leaderboardCache } from './schema';
 import { eq, sql, desc } from 'drizzle-orm';
 import {

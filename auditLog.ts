@@ -1,4 +1,4 @@
-import { db } from './index';
+import { db } from './db';
 import { auditLog } from './schema';
 import { desc } from 'drizzle-orm';
 import { computeAuditHash } from './crypto';

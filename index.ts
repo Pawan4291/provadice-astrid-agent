@@ -1,24 +1,25 @@
-import { drizzle } from "drizzle-orm/node-postgres";
-import { Pool } from "pg";
+process.on('unhandledRejection', (err) => {
+  console.error('UNHANDLED REJECTION:', err);
+});
+process.on('uncaughtException', (err) => {
+  console.error('UNCAUGHT EXCEPTION:', err);
+});
 
-const databaseUrl = process.env.DATABASE_URL;
+console.log('Starting provadice-astrid-agent...');
 
-if (!databaseUrl) {
-  throw new Error("DATABASE_URL is required");
-}
+import { tickClock, initRoundClock } from './roundClock';
+import http from 'http';
 
-const globalForDb = globalThis as typeof globalThis & {
-  __arenaNextJsPostgresqlPool?: Pool;
-};
+const port = process.env.PORT || 3000;
+http.createServer((req, res) => res.end('ok')).listen(port, () => {
+  console.log(`Health check server listening on port ${port}`);
+});
 
-export const pool =
-  globalForDb.__arenaNextJsPostgresqlPool ??
-  new Pool({
-    connectionString: databaseUrl,
-  });
+initRoundClock().then(() => {
+  console.log('Round clock initialized.');
+  setInterval(() => {
+    tickClock().catch((err: unknown) => console.error('tickClock error:', err));
+  }, 1000);
+}).catch((err) => console.error('initRoundClock failed:', err));
 
-if (process.env.NODE_ENV !== "production") {
-  globalForDb.__arenaNextJsPostgresqlPool = pool;
-}
-
-export const db = drizzle(pool);
+console.log('Startup complete, entering tick loop.');

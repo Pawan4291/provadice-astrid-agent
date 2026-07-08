@@ -4,7 +4,7 @@
  * Also handles incoming transfer processing
  */
 
-import { db } from './index';
+import { db } from './db';
 import { rounds } from './schema';
 import { eq, sql } from 'drizzle-orm';
 import {
