@@ -21,6 +21,9 @@ import { UCT_COIN_ID } from './constants.js';
 
 let clockInitialized = false;
 let currentRoundId: string | null = null;
+let lastTreasuryCheckAt = 0;
+let lastTreasuryLogWasLow = false;
+const TREASURY_CHECK_INTERVAL_MS = 10_000;
 
 /**
  * Initialize the round clock (call once at server boot)
@@ -160,12 +163,18 @@ export async function tickClock(): Promise<{ action: string; roundId?: string }>
       }
     }
 
-    // No active round — check treasury and open a new one
-    const treasury = await checkAndRefillTreasury();
+    // No active round — check treasury (throttled) and open a new one
+    if (Date.now() - lastTreasuryCheckAt < TREASURY_CHECK_INTERVAL_MS) {
+      if (lastTreasuryLogWasLow) return { action: 'treasury_low' };
+    } else {
+      lastTreasuryCheckAt = Date.now();
+      const treasury = await checkAndRefillTreasury();
+      lastTreasuryLogWasLow = !treasury.sufficient;
 
-    if (!treasury.sufficient) {
-      console.warn('[RoundClock] Treasury low — pausing round creation');
-      return { action: 'treasury_low' };
+      if (!treasury.sufficient) {
+        console.warn('[RoundClock] Treasury low — pausing round creation');
+        return { action: 'treasury_low' };
+      }
     }
 
     const newRound = await openNewRound();
