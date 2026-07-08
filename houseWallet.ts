@@ -53,6 +53,7 @@ export async function initHouseWallet(): Promise<void> {
 
     const result = await Sphere.init({
       ...providers,
+      network: 'testnet',
       nametag,
       autoGenerate: true,
       ...(mnemonic ? { mnemonic } : {}),
