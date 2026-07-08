@@ -71,9 +71,10 @@ export async function checkAndRefillTreasury(): Promise<FaucetCheckResult> {
         response: faucetResponse,
         nextAllowedAt: new Date(faucetCooldownUntil).toISOString(),
       });
-    } else {
+   } else {
       faucetResponse = `HTTP ${resp.status}: ${await resp.text()}`;
       console.warn(`[Faucet] Request failed: ${faucetResponse}`);
+      faucetCooldownUntil = Date.now() + FAUCET_COOLDOWN_MS; // avoid hammering on failure too
     }
   } catch (err) {
     faucetResponse = err instanceof Error ? err.message : String(err);
