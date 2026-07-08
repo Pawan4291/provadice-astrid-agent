@@ -4,21 +4,23 @@
   "description": "",
   "main": "index.js",
   "type": "module",
-"scripts": {
-  "build": "tsc",
-  "start": "node dist/index.js"
-},
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@unicitylabs/sphere-sdk": "^0.11.4",
     "drizzle-orm": "^0.45.2",
-    "pg": "^8.22.0"
+    "pg": "^8.22.0",
+    "ws": "^8.21.0"
   },
   "devDependencies": {
     "@types/node": "^26.1.1",
     "@types/pg": "^8.20.0",
+    "@types/ws": "^8.18.1",
     "ts-node": "^10.9.2",
     "typescript": "^6.0.3"
   }
